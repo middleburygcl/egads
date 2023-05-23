@@ -1,4 +1,4 @@
-set(CMD blend chamfer hollow edges)
+set(CMD blend chamfer hollow edges egads2tri tire)
 
 set(CMD_LIBS egads)
 if (UNIX AND NOT APPLE)
