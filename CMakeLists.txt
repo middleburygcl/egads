@@ -85,6 +85,8 @@ link_directories(${OCC_LIB_DIR})
 
 # include directories
 include_directories(${OCC_EXTRACT_DIR}/include/opencascade)
+set(EGADS_OCC_INCLUDE ${OCC_EXTRACT_DIR}/include/opencascade CACHE STRING "path to OpenCASCADE header files")
+
 include_directories(include)
 include_directories(src)
 include_directories(util)
