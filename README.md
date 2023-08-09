@@ -1,9 +1,9 @@
 ### **about**
 
-This is a copy of the EGADS source from the Engineering Sketch Pad (https://acdl.mit.edu/ESP) - the relevant sections from the `ESP`` README are provided below.
+This is a copy of the EGADS source from the Engineering Sketch Pad (https://acdl.mit.edu/ESP) - the relevant sections from the `ESP` README are provided below.
 
-The main difference between this repository and the original `EGADS` code is the way the installation is configured. A `CMake` configuration is included here to provide a more automatic installation process.
-In particular, the `CMake` configuration files will automatically download the `OpenCASCADE` libraries for your system and the `RPATH` will be set so that `LD_LIBRARY_PATH` is no longer needed to find the `OpenCASCADE` libraries. The `OpenCASCADE` libraries are attached in the "Releases" section of this repository. Currently, only version 7.6.0 has been uploaded.
+The main difference between this repository and the original `EGADS` code is the way the library is configured. A `CMake` configuration file is included here to provide a more automatic installation process.
+In particular, the `CMake` configuration file will automatically download the `OpenCASCADE` libraries for your system, and the `RPATH` will be set so that `LD_LIBRARY_PATH` is no longer needed to find the `OpenCASCADE` libraries. The `OpenCASCADE` libraries are attached in the "Releases" section of this repository. Currently, only version 7.6.0 has been uploaded.
 
 The best way to use the `EGADS` library from this repository is to simply call
 
@@ -13,7 +13,7 @@ add_subdirectory(egads)
 
 from your `CMake` configuration and link your program/library to the `egads` library target defined in this project. The main `EGADS` API headers are in `egads/include` but you may also want to include `egads/src` if you need access to lower-level `EGADS` functions. This project also defines the `EGADS_OCC_INCLUDE` variable in case you need to directly access the `OpenCASCADE` API.
 
-### original `ESP` README:
+### `ESP` README:
 
 **ESP: The Engineering Sketch Pad**, _Rev 1.22 -- December 2022_
 
@@ -77,5 +77,5 @@ The significant updates made to EGADS from Rev 1.21 are:
 
 ### **LICENSE**
 
-The Engineering Sketch Pad is distributed under a LGPL license, which this project inherits.
+The Engineering Sketch Pad is distributed under a LGPL license, which this repository inherits.
 Please see the `LICENSE` file for complete licensing details.
