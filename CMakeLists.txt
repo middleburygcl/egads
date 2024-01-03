@@ -28,7 +28,7 @@ set(OCC_EXTRACT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern/OpenCASCADE-${OCC_VERSION
 set(OCC_LIB_DIR ${OCC_EXTRACT_DIR}/lib)
 
 # unpack opencascade
-set(LIBOPENCASCADE "https://github.com/philipclaude/egads/releases/download/occ")
+set(LIBOPENCASCADE "https://github.com/middleburygcl/egads/releases/download/occ")
 if (NOT EXISTS ${OCC_EXTRACT_DIR})
 	#find_program(gh REQUIRED)
 	message(STATUS "downloading OpenCASCADE...")
