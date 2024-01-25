@@ -2337,7 +2337,7 @@ EG_setTessFace(const egObject *tess, int index, int len, const double *xyz,
 __HOST_AND_DEVICE__ int
 EG_localToGlobal(const egObject *tess, int index, int local, int *global)
 {
-  int      stat, n;
+  int      stat, i, n;
   egTessel *btess;
   egObject *node, **edges;
 
@@ -2392,13 +2392,30 @@ EG_localToGlobal(const egObject *tess, int index, int local, int *global)
       printf(" EGADS Error: No Edges for Node (EG_localToGlobal)!\n");
       return EGADS_TOPOERR;
     }
-    stat = EG_indexBodyTopo(btess->src, edges[0]);
-    if (stat <= EGADS_SUCCESS) {
-      printf(" EGADS Error: EG_indexBodyTopo = %d (EG_localToGlobal)!\n", stat);
-      return stat;
+    /* make sure the Edge we are looking at is not DEGENERATE */
+    stat = EGADS_NOTFOUND;
+    for (i = 0; i < n; i++) {
+      if (edges[i]->mtype == DEGENERATE) continue;
+      stat = EG_indexBodyTopo(btess->src, edges[i]);
+      if (stat <= EGADS_SUCCESS) {
+        printf(" EGADS Error: EG_indexBodyTopo %d = %d (EG_localToGlobal)!\n",
+               i, stat);
+        EG_free(edges);
+        return stat;
+      }
+      break;
     }
     EG_free(edges);
-    if (btess->tess1d[stat-1].global == NULL) return EGADS_DEGEN;
+    if (stat <= EGADS_SUCCESS) {
+      printf(" EGADS Error: Node %d does not have an Edge (EG_localToGlobal)!\n",
+             local);
+      return EGADS_TOPOERR;
+    }
+    if (btess->tess1d[stat-1].global == NULL) {
+      printf(" EGADS Error: Edge %d has no global storage (EG_localToGlobal)!\n",
+             stat);
+      return EGADS_DEGEN;
+    }
     if (btess->tess1d[stat-1].nodes[0] == local) {
       *global = btess->tess1d[stat-1].global[0];
     } else {
